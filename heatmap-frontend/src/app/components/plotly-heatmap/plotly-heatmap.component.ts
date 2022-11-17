@@ -11,6 +11,19 @@ export class PlotlyHeatmapComponent implements OnInit {
   private yTicks: string[] = [];
   private zValues: Array<number>[] = [];
 
+  private heatmapLayout = {
+    autosize: true,
+    title: 'A generated heatmap',
+    xaxis: {
+      ticks: '',
+      side: 'bottom'
+    },
+    yaxis: {
+      ticks: '',
+      ticksuffix: ' '
+    }
+  };
+
   constructor() { }
 
   ngOnInit(): void {
@@ -23,10 +36,11 @@ export class PlotlyHeatmapComponent implements OnInit {
         x: this.xTicks,
         y: this.yTicks,
         z: this.zValues,
-        type: 'heatmap'
+        type: 'heatmap',
+        hoverongaps: false
       }
     ],
-    layout: {autosize: true, title: 'A generated heatmap'}
+    layout: this.heatmapLayout
   }
 
   private generateData() {
