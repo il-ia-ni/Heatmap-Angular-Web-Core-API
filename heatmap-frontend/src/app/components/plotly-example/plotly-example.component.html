@@ -1,7 +1,22 @@
 <!DOCTYPE html>
+
 <plotly-plot
   [data]="graph.data"
   [layout]="graph.layout"
+  [useResizeHandler]="true"
+  [style]="{position: 'relative', width: '100%', height: '100%'}">
+</plotly-plot>
+
+<plotly-plot
+  [data]="heatmap.data"
+  [layout]="heatmap.layout"
+  [useResizeHandler]="true"
+  [style]="{position: 'relative', width: '100%', height: '100%'}">
+</plotly-plot>
+
+<plotly-plot
+  [data]="heatmapCat.data"
+  [layout]="heatmapCat.layout"
   [useResizeHandler]="true"
   [style]="{position: 'relative', width: '100%', height: '100%'}">
 </plotly-plot>

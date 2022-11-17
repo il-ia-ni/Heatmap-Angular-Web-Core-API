@@ -9,7 +9,12 @@ show = {{show}}<br>
   <ng-template #primaryBlock>Show primary block</ng-template>
   <ng-template #secondaryBlock>Secondary text to show</ng-template>
 
-  <ng-template #examplePlot><app-plotly-example></app-plotly-example></ng-template>
-  <ng-template #heatmapPlot><app-plotly-example></app-plotly-example></ng-template>
+  <ng-template #examplePlot>
+    <app-plotly-example></app-plotly-example>
+  </ng-template>
+
+  <ng-template #heatmapPlot>
+    <app-plotly-heatmap></app-plotly-heatmap>
+  </ng-template>
 
   <ng-template #elseBlock>Alternate text while primary text is hidden</ng-template>
