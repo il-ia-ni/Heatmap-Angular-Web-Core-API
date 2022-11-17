@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
+import { PlotlyExampleComponent } from './components/plotly-example/plotly-example.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlotlyExampleComponent
   ],
   imports: [
     BrowserModule,
