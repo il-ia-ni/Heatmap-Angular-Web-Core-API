@@ -15,8 +15,8 @@ namespace Heatmap_DataGenerator.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Array>> GetRandomHeatmapData() {
-            return Ok(_dataService.GetData());
+        public ActionResult<Array> GetRandomHeatmapData() {
+            return Ok(_dataService.GetData().ToArray());
         }
     }
 }

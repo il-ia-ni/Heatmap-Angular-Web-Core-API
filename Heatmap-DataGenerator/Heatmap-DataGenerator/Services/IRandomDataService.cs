@@ -2,6 +2,6 @@
 {
     public interface IRandomDataService
     {
-        public string GetData();
+        public IEnumerable<Array> GetData();
     }
 }
