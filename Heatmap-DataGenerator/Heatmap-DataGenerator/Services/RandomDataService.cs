@@ -4,8 +4,9 @@
     {
         public IEnumerable<Array> GetData()
         {
-            int amountInstances = 50;
-            int instancesLength = 30;
+            Random generator = new Random();
+            int amountInstances = generator.Next(600, 850);
+            int instancesLength = generator.Next(900, 1100);
 
             List<Array> data = new List<Array>(amountInstances);
 
