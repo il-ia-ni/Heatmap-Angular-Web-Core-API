@@ -13,8 +13,19 @@ export class GraphSwitcherComponent implements OnInit {
   @ViewChild('primaryBlock', {static: true}) primaryBlock: TemplateRef<any>|null = null;
   @ViewChild('secondaryBlock', {static: true}) secondaryBlock: TemplateRef<any>|null = null;
 
+  @ViewChild('examplePlot', {static: true}) examplePlot: TemplateRef<any>|null = null;
+  @ViewChild('heatmapPlot', {static: true}) heatmapPlot: TemplateRef<any>|null = null;
+
   switchPrimary() {
     this.thenBlock = this.thenBlock === this.primaryBlock ? this.secondaryBlock : this.primaryBlock;
+  }
+
+  showExamplePlot() {
+    this.thenBlock = this.examplePlot;
+  }
+
+  showHeatmapPlot() {
+    this.thenBlock = this.heatmapPlot;
   }
 
   ngOnInit() {

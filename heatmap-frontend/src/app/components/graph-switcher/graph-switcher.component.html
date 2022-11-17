@@ -1,6 +1,15 @@
 <button (click)="show = !show">{{show ? 'hide' : 'show'}}</button>
-<button (click)="switchPrimary()">Switch Primary</button>show = {{show}}<br>
+<button (click)="switchPrimary()">Switch Primary</button>
+show = {{show}}<br>
+
+<button (click)="showHeatmapPlot()">Show Plotly Heatmap</button>
+<button (click)="showExamplePlot()">Show Plotly example</button>
+
 <div *ngIf="show; then thenBlock; else elseBlock">this is ignored</div>
-  <ng-template #primaryBlock><app-plotly-example></app-plotly-example></ng-template>
+  <ng-template #primaryBlock>Show primary block</ng-template>
   <ng-template #secondaryBlock>Secondary text to show</ng-template>
+
+  <ng-template #examplePlot><app-plotly-example></app-plotly-example></ng-template>
+  <ng-template #heatmapPlot><app-plotly-example></app-plotly-example></ng-template>
+
   <ng-template #elseBlock>Alternate text while primary text is hidden</ng-template>
