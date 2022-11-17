@@ -50,19 +50,23 @@ export class PlotlyHeatmapComponent implements OnInit {
     this.randomWebApiService.getRandomData()
       .subscribe(result => {
         this.heatmap.data[0].z = result;
-        this.zValues = result;
+
+        this.heatmap.data[0].x = this.heatmap.data[0].x.slice(0, result[0].length);
+        this.heatmap.data[0].y = this.heatmap.data[0].y.slice(0, result.length);
 
         let i = 0;
-        while (i < this.heatmap.data[0].z.length) {
-          this.yTicks[i] = "y" + i;
+        while (i < result.length) {
+          this.heatmap.data[0].y[i] = "y" + i;
           i++;
         }
 
         i = 0;
-        while (i < this.heatmap.data[0].z[0].length) {
-        this.xTicks[i] = "x" + i;
+        while (i < result[0].length) {
+          this.heatmap.data[0].x[i] = "x" + i;
         i++;
         }
+
+        console.log("Web Api returned totally " + this.heatmap.data[0].z.length * this.heatmap.data[0].z[0].length + " random values:\n" + this.heatmap.data[0].z.length + " instances with " + this.heatmap.data[0].z[0].length + " signals each");
       });
   }
 
