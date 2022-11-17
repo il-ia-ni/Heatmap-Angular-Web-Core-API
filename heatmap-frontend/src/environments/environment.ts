@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  webAPIUri: 'https://localhost:7059/RandomData'
+  webAPIUri: 'https://localhost:7199/RandomData'
 };
 
 /*

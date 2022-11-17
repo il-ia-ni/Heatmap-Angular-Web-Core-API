@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -7,18 +9,13 @@ import { environment } from 'src/environments/environment';
 })
 export class WebApiFetchRandomService {
 
-  constructor(private httpClient: HttpClient) {
-    this.fetchRandomData();
-   }
+  private counter = 0;
 
-  private randomData: Array<Array<number>> = [];
+  constructor(private httpClient: HttpClient) { };
 
-  private fetchRandomData(): void {
-    this.httpClient.get<Array<Array<number>>>(environment.webAPIUri)
-      .subscribe(respond => this.randomData = respond);
+  public getRandomData(): Observable<Array<Array<number>>> {
+    console.log(this.counter++ + ": The service is calling Web API...");
+    return this.httpClient.get<Array<Array<number>>>(environment.webAPIUri);
   }
 
-  getRandomData(): Array<Array<number>> {
-    return this.randomData;
-  }
 }
