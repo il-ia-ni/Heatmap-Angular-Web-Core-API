@@ -13,6 +13,10 @@ export class PlotlyHeatmapComponent implements OnInit {
   private yTicks: string[] = [];
   private zValues!: Array<Array<number>>;
 
+  public ttlRandomEntities = 0;
+  public ttlRandomEntitySize = 0;
+  public ttlRandomSignals = this.ttlRandomEntities * this.ttlRandomEntitySize;
+
   public heatmapLayout = {
     autosize: true,
     title: 'A generated heatmap',
@@ -54,6 +58,10 @@ export class PlotlyHeatmapComponent implements OnInit {
         this.heatmap.data[0].x = this.heatmap.data[0].x.slice(0, result[0].length);
         this.heatmap.data[0].y = this.heatmap.data[0].y.slice(0, result.length);
 
+        this.ttlRandomEntities = this.heatmap.data[0].z.length;
+        this.ttlRandomEntitySize = this.heatmap.data[0].z[0].length;
+        this.ttlRandomSignals = this.ttlRandomEntities * this.ttlRandomEntitySize;
+
         let i = 0;
         while (i < result.length) {
           this.heatmap.data[0].y[i] = "y" + i;
@@ -66,7 +74,7 @@ export class PlotlyHeatmapComponent implements OnInit {
         i++;
         }
 
-        console.log("Web Api returned totally " + this.heatmap.data[0].z.length * this.heatmap.data[0].z[0].length + " random values:\n" + this.heatmap.data[0].z.length + " instances with " + this.heatmap.data[0].z[0].length + " signals each");
+        // console.log("Web Api returned totally " + this.ttlRandomSignals + " random values:\n" + this.ttlRandomEntities + " instances with " + this.ttlRandomEntitySize + " signals each");
       });
   }
 
