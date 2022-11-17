@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 import { PlotlyExampleComponent } from './components/plotly-example/plotly-example.component';
+import { GraphSwitcherComponent } from './components/graph-switcher/graph-switcher.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlotlyExampleComponent
+    PlotlyExampleComponent,
+    GraphSwitcherComponent
   ],
   imports: [
     BrowserModule,
