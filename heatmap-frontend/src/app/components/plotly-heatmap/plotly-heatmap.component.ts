@@ -12,8 +12,16 @@ export class PlotlyHeatmapComponent implements OnInit {
   private yTicks: string[] = [];
   private zValues!: Array<Array<number>>;
 
-  public colorSchemes = ['YlOrRd', 'YlGnBu', 'RdBu', 'Portland', 'Picnic', 'Jet', 'Hot', 'Greys', 'Greens', 'Electric', 'Earth', 'Bluered', 'Blackbody']; // possible schemes @ https://plotly.com/javascript/colorscales/
-  public selectedScheme = this.colorSchemes[5];
+  private customScheme = [
+    ['0.0', 'rgb(255,200,0)'],
+    ['0.25', 'rgb(180,150,60)'],
+    ['0.55', 'rgb(120,100,120)'],
+    ['0.75', 'rgb(60,50,180)'],
+    ['1.0', 'rgb(0,0,255)']
+  ];
+
+  public colorSchemes = ['YlOrRd', 'YlGnBu', 'RdBu', 'Portland', 'Jet', 'Picnic', 'Hot', 'Greys', 'Greens', 'Electric', 'Earth', 'Bluered', 'Blackbody']; // possible schemes @ https://plotly.com/javascript/colorscales/
+  public selectedScheme = this.colorSchemes[4];
 
   public ttlRandomEntities = 0;
   public ttlRandomEntitySize = 0;
@@ -41,7 +49,7 @@ export class PlotlyHeatmapComponent implements OnInit {
         z: this.zValues,
         type: 'heatmap',
         hoverongaps: false,
-        colorscale: this.selectedScheme
+        colorscale: this.customScheme  // OR this.customScheme! Cannot combine setting a string-named predefined color scheme AND an array with a custom scheme!
       }
     ],
     layout: this.heatmapLayout,
@@ -68,7 +76,7 @@ export class PlotlyHeatmapComponent implements OnInit {
         this.ttlRandomEntitySize = this.heatmap.data[0].z[0].length;
         this.ttlRandomSignals = this.ttlRandomEntities * this.ttlRandomEntitySize;
 
-        this.heatmap.data[0].colorscale = this.selectedScheme;
+        // this.heatmap.data[0].colorscale = this.selectedScheme;  // Comment out if heatmap.data.colorscale is set to this.customScheme arr!
         this.heatmap.layout.title = 'A generated heatmap with scheme: ' + this.selectedScheme;
 
         let i = 0;

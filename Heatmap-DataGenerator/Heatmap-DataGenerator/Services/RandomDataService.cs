@@ -2,36 +2,21 @@
 {
     public class RandomDataService: IRandomDataService
     {
-        public IEnumerable<Array> GetData()
-        {
-            Random generator = new Random();
-            int amountInstances = generator.Next(400, 850);
-            int instancesLength = generator.Next(300, 800);
+        public IEnumerable<Array> GetData() => Enumerable.Range(0, 1600).Select(x => generateInstance(400));
 
-            List<Array> data = new List<Array>(amountInstances);
+        private Array generateInstance(int length) => Enumerable.Range(0, length).Select(x => Random.Shared.Next(0, 10)).ToArray();
+        //{ 
+        //    int[] instance = new int[length];
+        //    Random generator = new Random();
+        //    int i = 0;
 
-            while (amountInstances > 0)
-            {
-                data.Add(generateInstance(instancesLength));
-                amountInstances--;
-            }
-            
-            return data;
-        }
+        //    while (i < length)
+        //    {
+        //        instance[i] = +generator.Next(1, 10);
+        //        i++;
+        //    }
 
-        private Array generateInstance(int length) 
-        { 
-            int[] instance = new int[length];
-            Random generator = new Random();
-            int i = 0;
-
-            while (i < length)
-            {
-                instance[i] = generator.Next(1, 100);
-                i++;
-            }
-
-            return instance;
-        }
+        //    return instance;
+        //}
     }
 }
