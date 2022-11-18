@@ -1,5 +1,5 @@
 import { outputAst } from '@angular/compiler';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { WebApiFetchRandomService } from 'src/app/services/web-api-fetch-random.service';
 
 @Component({
@@ -13,6 +13,13 @@ export class PlotlyHeatmapComponent implements OnInit {
   private yTicks: string[] = [];
   private zValues!: Array<Array<number>>;
 
+  public colorSchemes = ['YlOrRd', 'YlGnBu', 'RdBu', 'Portland', 'Picnic', 'Jet', 'Hot', 'Greys', 'Greens', 'Electric', 'Earth', 'Bluered', 'Blackbody']; // possible schemes @ https://plotly.com/javascript/colorscales/
+  @Input() selectedScheme = this.colorSchemes[5];
+  @Output() schemeChange = new EventEmitter<string>();
+  selectScheme() {
+    this.schemeChange.emit(this.selectedScheme);
+  }
+
   public ttlRandomEntities = 0;
   public ttlRandomEntitySize = 0;
   public ttlRandomSignals = this.ttlRandomEntities * this.ttlRandomEntitySize;
@@ -20,7 +27,7 @@ export class PlotlyHeatmapComponent implements OnInit {
   public heatmapLayout = {
     autosize: true,
     height: 800,
-    title: 'A generated heatmap',
+    title: 'A generated heatmap with scheme: ' + this.selectedScheme,
     xaxis: {
       ticks: '',
       side: 'bottom'
@@ -39,7 +46,7 @@ export class PlotlyHeatmapComponent implements OnInit {
         z: this.zValues,
         type: 'heatmap',
         hoverongaps: false,
-        colorscale: 'Portland'  // possible schemes: YlOrRd, YlGnBu, RdBu, Portland, Picnic, Jet, Hot, Greys, Greens, Electric, Earth, Bluered, Blackbody. See @ https://plotly.com/javascript/colorscales/
+        colorscale: this.selectedScheme
       }
     ],
     layout: this.heatmapLayout
@@ -63,6 +70,9 @@ export class PlotlyHeatmapComponent implements OnInit {
         this.ttlRandomEntities = this.heatmap.data[0].z.length;
         this.ttlRandomEntitySize = this.heatmap.data[0].z[0].length;
         this.ttlRandomSignals = this.ttlRandomEntities * this.ttlRandomEntitySize;
+
+        this.heatmap.data[0].colorscale = this.selectedScheme;
+        this.heatmap.layout.title = 'A generated heatmap with scheme: ' + this.selectedScheme;
 
         let i = 0;
         while (i < result.length) {

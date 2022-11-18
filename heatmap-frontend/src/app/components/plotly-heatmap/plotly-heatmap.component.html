@@ -6,6 +6,11 @@
 
 <button (click)="getData()">Refresh the generated heatmap</button>
 
+<p>Choose a color scheme for the heatmap:</p>
+<select [(ngModel)]="selectedScheme" required>
+  <option *ngFor="let scheme of colorSchemes" [value]="scheme">{{scheme}}</option>
+</select>
+
 <plotly-plot
   [data]="heatmap.data"
   [layout]="heatmap.layout"
