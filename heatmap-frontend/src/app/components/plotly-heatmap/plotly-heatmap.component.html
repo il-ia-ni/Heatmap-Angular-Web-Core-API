@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 
+<h3>Web API returned {{ttlRandomSignals}} signals:</h3>
+<p>{{ttlRandomEntities}} random entities</p>
+<p>{{ttlRandomEntitySize}} signals in each random entity</p>
+
+<button (click)="getData()">Refresh the generated heatmap</button>
+
 <plotly-plot
   [data]="heatmap.data"
   [layout]="heatmap.layout"
   [useResizeHandler]="true"
   [style]="{position: 'relative', width: '100%', height: '100%'}">
 </plotly-plot>
-
-<h3>Web API returned {{ttlRandomSignals}} signals:</h3>
-<p>{{ttlRandomEntities}} random entities</p>
-<p>{{ttlRandomEntitySize}} signals in each random entity</p>
-
-<button (click)="getData()">Refresh the generated heatmap</button>

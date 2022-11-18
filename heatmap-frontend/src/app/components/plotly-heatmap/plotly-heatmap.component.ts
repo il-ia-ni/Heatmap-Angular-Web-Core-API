@@ -19,6 +19,7 @@ export class PlotlyHeatmapComponent implements OnInit {
 
   public heatmapLayout = {
     autosize: true,
+    height: 800,
     title: 'A generated heatmap',
     xaxis: {
       ticks: '',
@@ -27,7 +28,7 @@ export class PlotlyHeatmapComponent implements OnInit {
     yaxis: {
       ticks: '',
       ticksuffix: ' '
-    }
+    },
   };
 
   public heatmap = {
@@ -37,7 +38,8 @@ export class PlotlyHeatmapComponent implements OnInit {
         y: this.yTicks,
         z: this.zValues,
         type: 'heatmap',
-        hoverongaps: false
+        hoverongaps: false,
+        colorscale: 'Portland'  // possible schemes: YlOrRd, YlGnBu, RdBu, Portland, Picnic, Jet, Hot, Greys, Greens, Electric, Earth, Bluered, Blackbody. See @ https://plotly.com/javascript/colorscales/
       }
     ],
     layout: this.heatmapLayout
