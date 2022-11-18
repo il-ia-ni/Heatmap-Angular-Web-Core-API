@@ -1,5 +1,4 @@
-import { outputAst } from '@angular/compiler';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WebApiFetchRandomService } from 'src/app/services/web-api-fetch-random.service';
 
 @Component({
@@ -15,10 +14,6 @@ export class PlotlyHeatmapComponent implements OnInit {
 
   public colorSchemes = ['YlOrRd', 'YlGnBu', 'RdBu', 'Portland', 'Picnic', 'Jet', 'Hot', 'Greys', 'Greens', 'Electric', 'Earth', 'Bluered', 'Blackbody']; // possible schemes @ https://plotly.com/javascript/colorscales/
   @Input() selectedScheme = this.colorSchemes[5];
-  @Output() schemeChange = new EventEmitter<string>();
-  selectScheme() {
-    this.schemeChange.emit(this.selectedScheme);
-  }
 
   public ttlRandomEntities = 0;
   public ttlRandomEntitySize = 0;
