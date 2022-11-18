@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WebApiFetchRandomService } from 'src/app/services/web-api-fetch-random.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class PlotlyHeatmapComponent implements OnInit {
   private zValues!: Array<Array<number>>;
 
   public colorSchemes = ['YlOrRd', 'YlGnBu', 'RdBu', 'Portland', 'Picnic', 'Jet', 'Hot', 'Greys', 'Greens', 'Electric', 'Earth', 'Bluered', 'Blackbody']; // possible schemes @ https://plotly.com/javascript/colorscales/
-  @Input() selectedScheme = this.colorSchemes[5];
+  public selectedScheme = this.colorSchemes[5];
 
   public ttlRandomEntities = 0;
   public ttlRandomEntitySize = 0;
@@ -44,7 +44,9 @@ export class PlotlyHeatmapComponent implements OnInit {
         colorscale: this.selectedScheme
       }
     ],
-    layout: this.heatmapLayout
+    layout: this.heatmapLayout,
+    updateOnDataChange: true,
+    updateOnLayoutChange: true
   }
 
   constructor(public randomWebApiService: WebApiFetchRandomService) { }
